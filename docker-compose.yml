@@ -5,7 +5,6 @@ services:
   zoo1:
     image: zookeeper:3.9.3
     container_name: zookeeper_1
-    restart: always
     hostname: zoo1
     ports:
       - 2181:2181

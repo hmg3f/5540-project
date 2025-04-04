@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -d "/opt/hadoop/data/nameNode/current" ]; then
+if [ ! -d "/opt/hadoop/data/namenode/current" ]; then
     echo "Formatting NameNode..."
     hdfs namenode -format
 fi
