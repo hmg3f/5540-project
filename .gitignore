@@ -1,3 +1,5 @@
 hadoop_datanode_1/*
+!hadoop_datanode_1/README
 
 hadoop_namenode/*
+!hadoop_namenode/README
