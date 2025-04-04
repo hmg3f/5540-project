@@ -1,0 +1,64 @@
+name: crs-app
+
+services:
+  # zookeeper
+  zoo1:
+    image: zookeeper:3.9.3
+    container_name: zookeeper_1
+    restart: always
+    hostname: zoo1
+    ports:
+      - 2181:2181
+      - 9876:9876
+    volumes:
+      - ./zookeeper_config/zoo.cfg:/conf/zoo.cfg
+    environment:
+      ZOO_MY_ID: 1
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.2
+
+  # hadoop namenode
+  hnn1:
+    image: apache/hadoop:3.4.1
+    container_name: namenode
+    hostname: namenode
+    user: root
+    command: [ "/bin/bash", "/start-hdfs.sh" ]
+    ports:
+      - 9870:9870
+    volumes:
+      - ./hadoop_namenode:/opt/hadoop/data/namenode
+      - ./hadoop_config:/opt/hadoop/etc/hadoop
+      - ./start-hdfs.sh:/start-hdfs.sh
+    environment:
+      HADOOP_HOME: /opt/hadoop
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.3
+
+  # hadoop datanode
+  hdn1:
+    image: apache/hadoop:3.4.1
+    depends_on:
+      - hnn1
+    container_name: datanode_1
+    hostname: datanode_1
+    user: root
+    command: [ "/bin/bash", "/init-datanode.sh" ]
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+    volumes:
+      - ./hadoop_datanode_1:/opt/hadoop/data/datanode
+      - ./hadoop_config:/opt/hadoop/etc/hadoop
+      - ./init-datanode.sh:/init-datanode.sh
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.4
+
+networks:
+  crs_bridge:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
