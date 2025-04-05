@@ -10,7 +10,7 @@ services:
       - 2181:2181
       - 9876:9876
     volumes:
-      - ./zookeeper_config/zoo.cfg:/conf/zoo.cfg
+      - ./zookeeper_config:/conf
     environment:
       ZOO_MY_ID: 1
     networks:
