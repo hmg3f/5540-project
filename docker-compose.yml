@@ -55,6 +55,46 @@ services:
       crs_bridge:
         ipv4_address: 172.20.0.4
 
+  kafka:
+    image: apache/kafka:4.0.0
+    container_name: kafka
+    hostname: kafka
+    user: root
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.5
+
+  spark:
+    image: spark
+    container_name: spark
+    hostname: spark
+    user: root
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.6
+
+  hive:
+    image: apache/hive:4.0.1
+    container_name: hive
+    hostname: hive
+    user: root
+    networks:
+      crs_bridge:
+        ipv4_address: 172.20.0.7
+
 networks:
   crs_bridge:
     ipam:
