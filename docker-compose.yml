@@ -1,22 +1,6 @@
 name: crs-app
 
 services:
-  # zookeeper
-  zoo1:
-    image: zookeeper:3.9.3
-    container_name: zookeeper_1
-    hostname: zoo1
-    ports:
-      - 2181:2181
-      - 9876:9876
-    volumes:
-      - ./zookeeper_config:/conf
-    environment:
-      ZOO_MY_ID: 1
-    networks:
-      crs_bridge:
-        ipv4_address: 172.20.0.2
-
   # hadoop namenode
   hnn1:
     image: apache/hadoop:3.4.1
@@ -85,15 +69,6 @@ services:
     networks:
       crs_bridge:
         ipv4_address: 172.20.0.6
-
-  hive:
-    image: apache/hive:4.0.1
-    container_name: hive
-    hostname: hive
-    user: root
-    networks:
-      crs_bridge:
-        ipv4_address: 172.20.0.7
 
 networks:
   crs_bridge:
