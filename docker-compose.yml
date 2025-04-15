@@ -80,7 +80,7 @@ services:
     ports:
       - 9092:9092
     volumes:
-      - ./kafka_topics.sh:/opt/broker/kafka_topics.sh
+      - ./kafka-init_topics.sh:/opt/kafka/kafka-init_topics.sh
     environment:
       KAFKA_NODE_ID: 2
       KAFKA_PROCESS_ROLES: broker
@@ -93,6 +93,8 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     depends_on:
       - controller-1
+    post_start:
+      - command: /opt/kafka/kafka-init_topics.sh
     networks:
       crs_bridge:
         ipv4_address: 172.20.0.6
