@@ -13,4 +13,53 @@
     <value>org.apache.hadoop.mapred.shuffleHandler</value>
   </property>
   
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>resourcemanager</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.address</name>
+    <value>resourcemanager:8032</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>resourcemanager:8030</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>resourcemanager:8031</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.fs.state-store.uri</name>
+    <value>/rmstate</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.timeline-service.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.timeline-service_generic-application-history.enabled</name>
+    <value>true</value>
+  </property>
+  
+  <property>
+    <name>yarn.timeline-service.hostname</name>
+    <value>historyserver</value>
+  </property>
+
+  <property>
+    <name>yarn.timeline-service.leveldb-timeline-store.path</name>
+    <value>/hadoop/yarn/timeline</value>
+  </property>
 </configuration>
