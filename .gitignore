@@ -3,3 +3,5 @@ hadoop_datanode_1/*
 
 hadoop_namenode/*
 !hadoop_namenode/README
+
+data/tweets.csv
