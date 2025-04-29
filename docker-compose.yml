@@ -70,6 +70,7 @@ services:
     command: [ "/bin/bash", "/start-hdfs.sh" ]
     ports:
       - 9870:9870
+      - 9010:9000
     volumes:
       - ./hadoop_namenode:/opt/hadoop/data/namenode
       - ./hadoop_config:/opt/hadoop/etc/hadoop
@@ -179,6 +180,7 @@ services:
     volumes:
       - ./hadoop_config:/opt/hadoop/etc/hadoop
       - ./load-hdfs.sh:/load-hdfs.sh
+      - ./data:/data
     environment:
       - HADOOP_HOME=/opt/hadoop
     networks:

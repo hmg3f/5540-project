@@ -18,7 +18,7 @@ echo 'Spark: Waiting to submit job...'
 sleep 5
 echo 'Spark: Submitting job'
 
-/opt/spark/bin/spark-submit \
-  --master yarn \
-  --deploy-mode client \
-  /opt/spark/jobs/tweets.py
+# /opt/spark/bin/spark-submit \
+#   --master yarn \
+#   --deploy-mode client \
+#   /opt/spark/jobs/tweets.py

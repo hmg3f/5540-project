@@ -5,3 +5,12 @@ hadoop_namenode/*
 !hadoop_namenode/README
 
 data/tweets.csv
+data/final_crime_data_F.csv
+
+predicted_crimes*.csv
+
+*.zip
+*.html
+spark-*
+
+.ipynb_checkpoints
